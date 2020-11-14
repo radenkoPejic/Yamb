@@ -80,6 +80,15 @@ int max(int a, int b){
     return (a>b)?a:b;
 }
 
+void updateJ(double koeficijenti[][15][5], int j){
+	switch(j){
+		case 0: koeficijenti[x][i][j] += KOEF_silazna; break;
+		case 1: koeficijenti[x][i][j] += KOEF_sloboda; break;
+		case 2: koeficijenti[x][i][j] += KOEF_uzlazna; break;
+		case 3: koeficijenti[x][i][j] += KOEF_najava; break;
+	}
+}
+
 void calc_koef(double koeficijenti[][15][5],int x,int *kockice,int listic[][5],int dozvoljeno[][5],int t){
     int i,j,k;
     int map[6]={0,0,0,0,0,0};
@@ -91,63 +100,33 @@ void calc_koef(double koeficijenti[][15][5],int x,int *kockice,int listic[][5],i
                 switch(i){
                     case 0:
                         for(k=0;k<5;k++) if(kockice[k] == i+1) koeficijenti[x][i][j]+= 1.0006/3;
-                        switch(j){
-                            case 0: koeficijenti[x][i][j] += KOEF_silazna; break;
-                            case 1: koeficijenti[x][i][j] += KOEF_sloboda; break;
-                            case 2: koeficijenti[x][i][j] += KOEF_uzlazna; break;
-                            case 3: koeficijenti[x][i][j] += KOEF_najava; break;
-                        }
+                        updateJ(koeficijenti, j);
                     break;
 
                     case 1:
                         for(k=0;k<5;k++) if(kockice[k] == i+1) koeficijenti[x][i][j]+= 1.0005/3;
-                        switch(j){
-                            case 0: koeficijenti[x][i][j] += KOEF_silazna; break;
-                            case 1: koeficijenti[x][i][j] += KOEF_sloboda; break;
-                            case 2: koeficijenti[x][i][j] += KOEF_uzlazna; break;
-                            case 3: koeficijenti[x][i][j] += KOEF_najava; break;
-                        }
+                        updateJ(koeficijenti, j);
                     break;
 
                     case 2:
                         for(k=0;k<5;k++) if(kockice[k] == i+1) koeficijenti[x][i][j]+= 1.0004/3;
-                        switch(j){
-                            case 0: koeficijenti[x][i][j] += KOEF_silazna; break;
-                            case 1: koeficijenti[x][i][j] += KOEF_sloboda; break;
-                            case 2: koeficijenti[x][i][j] += KOEF_uzlazna; break;
-                            case 3: koeficijenti[x][i][j] += KOEF_najava; break;
-                        }
+                        updateJ(koeficijenti, j);
                     break;
 
 
                     case 3:
                         for(k=0;k<5;k++) if(kockice[k] == i+1) koeficijenti[x][i][j]+= 1.0003/3;
-                        switch(j){
-                            case 0: koeficijenti[x][i][j] += KOEF_silazna; break;
-                            case 1: koeficijenti[x][i][j] += KOEF_sloboda; break;
-                            case 2: koeficijenti[x][i][j] += KOEF_uzlazna; break;
-                            case 3: koeficijenti[x][i][j] += KOEF_najava; break;
-                        }
+                        updateJ(koeficijenti, j);
                     break;
 
                     case 4:
                         for(k=0;k<5;k++) if(kockice[k] == i+1) koeficijenti[x][i][j]+= 1.0002/3;
-                        switch(j){
-                            case 0: koeficijenti[x][i][j] += KOEF_silazna; break;
-                            case 1: koeficijenti[x][i][j] += KOEF_sloboda; break;
-                            case 2: koeficijenti[x][i][j] += KOEF_uzlazna; break;
-                            case 3: koeficijenti[x][i][j] += KOEF_najava; break;
-                        }
+                        updateJ(koeficijenti, j);
                     break;
 
                     case 5:
                         for(k=0;k<5;k++) if(kockice[k] == i+1) koeficijenti[x][i][j]+= 1.0001/3;
-                        switch(j){
-                            case 0: koeficijenti[x][i][j] += KOEF_silazna; break;
-                            case 1: koeficijenti[x][i][j] += KOEF_sloboda; break;
-                            case 2: koeficijenti[x][i][j] += KOEF_uzlazna; break;
-                            case 3: koeficijenti[x][i][j] += KOEF_najava; break;
-                        }
+                        updateJ(koeficijenti, j);
                     break;
 
                     case 6:
@@ -156,12 +135,7 @@ void calc_koef(double koeficijenti[][15][5],int x,int *kockice,int listic[][5],i
                         if(broji > 20.0/30) koeficijenti[x][i][j] += broji;
                         //koeficijenti[x][i][j] += (broji);
                         //for(k=0;k<5;k++) koeficijenti[x][i][j]+=1.0*kockice[k]/30;
-                        switch(j){
-                            case 0: koeficijenti[x][i][j] += KOEF_silazna; break;
-                            case 1: koeficijenti[x][i][j] += KOEF_sloboda; break;
-                            case 2: koeficijenti[x][i][j] += KOEF_uzlazna; break;
-                            case 3: koeficijenti[x][i][j] += KOEF_najava; break;
-                        }
+                        updateJ(koeficijenti, j);
                     break;
 
                     case 7:
@@ -170,12 +144,7 @@ void calc_koef(double koeficijenti[][15][5],int x,int *kockice,int listic[][5],i
                         if(broji >20.0) koeficijenti[x][i][j] += broji/30;
                         //koeficijenti[x][i][j] += (broji);
                         //for(k=0;k<5;k++) if(kockice[k]) koeficijenti[x][i][j]+= 1.0*(7-kockice[k])/30;
-                        switch(j){
-                            case 0: koeficijenti[x][i][j] += KOEF_silazna; break;
-                            case 1: koeficijenti[x][i][j] += KOEF_sloboda; break;
-                            case 2: koeficijenti[x][i][j] += KOEF_uzlazna; break;
-                            case 3: koeficijenti[x][i][j] += KOEF_najava; break;
-                        }
+                        updateJ(koeficijenti, j);
                     break;
 
                     case 8:
@@ -187,12 +156,7 @@ void calc_koef(double koeficijenti[][15][5],int x,int *kockice,int listic[][5],i
                         if(kockice_inRange(kockice,1,5) || kockice_inRange(kockice,2,6))
                             koeficijenti[x][i][j] += 1.00;
                         else koeficijenti[x][i][j] += max(kockice_inRange2(kockice,1,5),kockice_inRange2(kockice,2,6))/5;
-                        switch(j){
-                            case 0: koeficijenti[x][i][j] += KOEF_silazna; break;
-                            case 1: koeficijenti[x][i][j] += KOEF_sloboda; break;
-                            case 2: koeficijenti[x][i][j] += KOEF_uzlazna; break;
-                            case 3: koeficijenti[x][i][j] += KOEF_najava; break;
-                        }
+                        updateJ(koeficijenti, j);
                     break;
 
                     case 9:
@@ -200,12 +164,7 @@ void calc_koef(double koeficijenti[][15][5],int x,int *kockice,int listic[][5],i
                         for(k=0;k<5;k++) map[kockice[k]-1] ++;
                         //for(k=0;k<6;k++) if(map[k]>=3)  koeficijenti[x][i][j] += 1.0;
                         for(k=0;k<6;k++) if(map[k]>=3 && k!=0 && k!=1 && k!=2)  koeficijenti[x][i][j] += 1.0;
-                        switch(j){
-                            case 0: koeficijenti[x][i][j] += KOEF_silazna; break;
-                            case 1: koeficijenti[x][i][j] += KOEF_sloboda; break;
-                            case 2: koeficijenti[x][i][j] += KOEF_uzlazna; break;
-                            case 3: koeficijenti[x][i][j] += KOEF_najava; break;
-                        }
+                        updateJ(koeficijenti, j);
 
                     break;
 
@@ -216,12 +175,7 @@ void calc_koef(double koeficijenti[][15][5],int x,int *kockice,int listic[][5],i
                         for(k=0;k<6;k++) if(map[k]==3)  ok1 = 1;
                         for(k=0;k<6;k++) if(map[k]==2)  ok2 = 1;
                         if(ok1 && ok2) koeficijenti[x][i][j] += 2.4;
-                        switch(j){
-                            case 0: koeficijenti[x][i][j] += KOEF_silazna; break;
-                            case 1: koeficijenti[x][i][j] += KOEF_sloboda; break;
-                            case 2: koeficijenti[x][i][j] += KOEF_uzlazna; break;
-                            case 3: koeficijenti[x][i][j] += KOEF_najava; break;
-                        }
+                        updateJ(koeficijenti, j);
 
                     break;
 
@@ -229,12 +183,7 @@ void calc_koef(double koeficijenti[][15][5],int x,int *kockice,int listic[][5],i
                         for(k=0;k<6;k++) map[k]=0;
                         for(k=0;k<5;k++) map[kockice[k]-1] ++;
                         for(k=0;k<6;k++) if(map[k]>=4)  koeficijenti[x][i][j] += 2.5;
-                        switch(j){
-                            case 0: koeficijenti[x][i][j] += KOEF_silazna; break;
-                            case 1: koeficijenti[x][i][j] += KOEF_sloboda; break;
-                            case 2: koeficijenti[x][i][j] += KOEF_uzlazna; break;
-                            case 3: koeficijenti[x][i][j] += KOEF_najava; break;
-                        }
+                        updateJ(koeficijenti, j);
 
                     break;
 
@@ -242,12 +191,7 @@ void calc_koef(double koeficijenti[][15][5],int x,int *kockice,int listic[][5],i
                         for(k=0;k<6;k++) map[k]=0;
                         for(k=0;k<5;k++) map[kockice[k]-1] ++;
                         for(k=0;k<6;k++) if(map[k]>=5)  koeficijenti[x][i][j] += 2.7;
-                        switch(j){
-                            case 0: koeficijenti[x][i][j] += KOEF_silazna; break;
-                            case 1: koeficijenti[x][i][j] += KOEF_sloboda; break;
-                            case 2: koeficijenti[x][i][j] += KOEF_uzlazna; break;
-                            case 3: koeficijenti[x][i][j] += KOEF_najava; break;
-                        }
+                        updateJ(koeficijenti, j);
 
                     break;
 
